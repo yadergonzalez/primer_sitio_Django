@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,12 +12,19 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'polls/style.css' %}"
+    />
+
     {% if latest_question_list %}
     <ul>
       {% for question in latest_question_list %}
       <li>
-        <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a>
+        <a href="{% url 'polls:detail' question.id %}"
+          >{{ question.question_text }}</a
+        >
       </li>
       {% endfor %}
     </ul>
